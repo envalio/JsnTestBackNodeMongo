@@ -8,17 +8,6 @@ const url = 'mongodb://localhost:27017';
 
 let db;
 
-let heroes = [
-    {
-      id: 0,
-      nickname: 'Zero',
-      realname: 'Befor all',
-      description: 'Allways be a zero',
-      superpower: 'Absolute zero',
-      catchphrase: 'Catch a zero'
-    },
-  ];
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( { extended: true } ));
 
@@ -54,7 +43,7 @@ app.post('/heroes', (req, res) => {
         superpower: req.body.superpower,
         catchphrase: req.body.catchphrase
     };    
-    db.collection('heroes').insertMany(hero, (err, result) => {
+    db.collection('heroes').insert(hero, (err, result) => {
         if (err) {
             console.log(err);
             return res.sendStatus(500);
@@ -65,13 +54,14 @@ app.post('/heroes', (req, res) => {
 
   app.put('/heroes/:id', (req, res) => {
     db.collection('heroes').update(
-        req.params.id,
+        { _id: ObjectID(req.params.id) },
         {
             nickname: req.body.nickname,
             realname: req.body.realname,
             description: req.body.description,
             superpower: req.body.superpower,
-            catchphrase: req.body.catchphrase
+            catchphrase: req.body.catchphrase,
+            
         },
         function (err, result) {
             if (err) {
