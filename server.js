@@ -1,8 +1,8 @@
-const express = require('express'); //connect framework exxpress
-const bodyParser = require('body-parser'); //connect bodyParse fo nodejs
-const MongoClient = require('mongodb').MongoClient; //connect to MongoClient in mongodb
-const assert = require('assert'); //connect assert module
-const ObjectID = require('mongodb').ObjectID; //connect module ObjectID for mongodb
+const express = require('express'); 
+const bodyParser = require('body-parser'); 
+const MongoClient = require('mongodb').MongoClient; 
+const assert = require('assert'); 
+const ObjectID = require('mongodb').ObjectID; 
 const app = express(); 
 const url = 'mongodb://localhost:27017'; 
 
